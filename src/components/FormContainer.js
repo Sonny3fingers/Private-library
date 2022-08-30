@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormInput from "./FormInput";
 import ErrorModal from "./UI/ErrorModal";
+import Ratings from "./Ratings";
 
 const FormContainer = (props) => {
   const inputs = [
@@ -20,17 +21,18 @@ const FormContainer = (props) => {
     },
     {
       id: 3,
-      name: "isbn",
-      label: "ISBN#",
-      type: "number",
-      placeholder: "Enter Book ISBN#",
+      name: "date",
+      label: "End Date",
+      type: "date",
+      placeholder: "",
     },
   ];
-
+  const [rating, setRating] = useState(1);
   const [values, setValues] = useState({
     title: "",
     author: "",
-    isbn: "",
+    date: "",
+    rating: "",
   });
 
   const [error, setError] = useState();
@@ -48,15 +50,23 @@ const FormContainer = (props) => {
     });
   };
 
+  useEffect(() => {
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        rating,
+      };
+    });
+  }, [rating]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     // Validate
     if (
       values.author.trim().length === 0 ||
       values.title.trim().length === 0 ||
-      values.isbn.trim().length === 0
+      values.date.trim().length === 0
     ) {
-      console.log("error");
       setError({
         title: "Invalid input",
         message: "Please fill in all the fields.",
@@ -64,13 +74,17 @@ const FormContainer = (props) => {
       return;
     }
     props.onAddBook(values);
+    setTimeout(() => {
+      props.onFetchBooks();
+    }, 1000);
 
     // RESET VALUES TO NOTHING
     setValues({
       title: "",
       author: "",
-      isbn: "",
+      date: "",
     });
+    setRating(1);
   };
 
   const errorHandler = () => {
@@ -96,6 +110,7 @@ const FormContainer = (props) => {
             value={values[input.name]}
           />
         ))}
+        <Ratings select={setRating} selected={rating} />
         <button onClick={props.onFetchBooks}>Submit</button>
       </form>
     </>

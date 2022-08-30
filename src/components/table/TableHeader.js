@@ -1,15 +1,17 @@
-import React from 'react'
+import React from "react";
 
 const TableHeader = () => {
-    return (
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>ISBN</th>
-            </tr>
-        </thead>
-    )
-}
+  return (
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>End Date</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+    </thead>
+  );
+};
 
-export default TableHeader
+export default TableHeader;

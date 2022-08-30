@@ -3,17 +3,20 @@ import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 
 const TableContainer = (props) => {
-  const { items } = props;
+  const { items, onFetchBooks } = props;
 
   return (
     <table className="table">
       <TableHeader />
       {items.map((item) => (
         <TableBody
+          id={item.id}
           key={item.id}
           author={item.author}
           title={item.title}
-          isbn={item.isbn}
+          date={item.date}
+          rating={item.rating}
+          onFetchBooks={onFetchBooks}
         />
       ))}
     </table>

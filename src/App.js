@@ -23,7 +23,8 @@ function App() {
           id: key,
           author: data[key].author,
           title: data[key].title,
-          isbn: data[key].isbn,
+          date: data[key].date,
+          rating: data[key].rating,
         });
       }
       setBooks(loadedBooks);
@@ -52,13 +53,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Book Project</h1>
+      <h1>Private Library App</h1>
+      <p>Keep Track Of Your Readings.</p>
       <FormContainer
         onAddBook={addBookHandler}
         onFetchBooks={fetchBooksHandler}
       />
       {errorHandler && <p>{errorHandler.message}</p>}
-      <TableContainer items={books} />
+      <TableContainer items={books} onFetchBooks={fetchBooksHandler} />
     </div>
   );
 }
