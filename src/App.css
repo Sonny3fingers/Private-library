@@ -1,22 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200&family=Be+Vietnam+Pro:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;0,800;1,400&family=Lato:wght@300&family=Poppins:wght@200;300;500;700&display=swap");
+:root {
+  --main-bg: rgb(244, 237, 227);
+  --main-green: rgb(9, 85, 85);
+  --hover-green: rgba(9, 85, 85, 0.5);
+}
 body {
-  background-color: rgb(244, 237, 227);
+  width: 100%;
+  min-width: 347.37px;
+  height: 100%;
+  background-color: var(--main-bg);
   overflow-x: hidden;
+  font-family: "EB Garamond", serif;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+#backdrop-root {
+  min-width: 347.37px;
+}
+#modal-root {
+  min-width: 347.37px;
 }
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 70%;
+  max-width: 1800px;
   margin: 0 auto;
+  padding-bottom: 64px;
   position: relative;
   z-index: 2;
 }
 .App h1 {
   margin-bottom: 4px;
+  font-size: 36px;
 }
 .App p {
   margin-top: 0px;
+  font-size: 18px;
 }
 .App::before {
   content: "";
@@ -36,7 +59,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 30px;
+  padding-bottom: 40px;
   position: relative;
 }
 .formInput {
@@ -51,6 +74,9 @@ body {
   padding: 10px;
   font-size: 16px;
   margin-bottom: 10px;
+}
+.form h3 {
+  font-size: 1.5em;
 }
 .form button {
   padding: 3px;
@@ -131,30 +157,65 @@ tr:hover {
   background-color: rgba(9, 85, 85, 0.1);
 }
 .table thead,
+.table thead th,
 .table td {
   padding: 5px;
   text-align: left;
 }
-td {
-  justify-items: stretch;
-  flex-grow: 1;
+td:last-of-type {
+  text-align: center;
+  margin: auto;
 }
-td button {
-  width: 60%;
+td span {
+  width: 100%;
   height: 100%;
-  padding: 5px;
+  padding: 3px 10px;
   cursor: pointer;
   background-color: #fff;
   border: none;
-  margin: 0 auto;
+  margin: 0;
   transition: all 0.3s ease;
+  position: relative;
 }
-td button:active {
+td span:active {
   outline: none;
+}
+td span .icon {
+  pointer-events: none;
+}
+td ul {
+  height: 63.2px;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  background-color: #fff;
+  position: absolute;
+  top: 120%;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+}
+td ul li {
+  flex: 1;
+  border: 1px solid black;
+  background-color: rgba(233, 186, 22, 0.3);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+td ul li:hover {
+  background-color: rgba(233, 186, 22, 0.7);
 }
 @media screen and (max-width: 830px) {
   .App {
     width: 95%;
+    min-width: 330px;
   }
   .App::before {
     width: 300px;

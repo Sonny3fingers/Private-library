@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import FormInput from "./FormInput";
-import ErrorModal from "./UI/ErrorModal";
+import BoxModal from "./UI/BoxModal";
 import Ratings from "./Ratings";
+import EditContext from "../store/edit-context";
 
 const FormContainer = (props) => {
   const inputs = [
@@ -27,7 +28,12 @@ const FormContainer = (props) => {
       placeholder: "",
     },
   ];
+
+  const editCtx = useContext(EditContext);
+  let bookValues = editCtx.bookValues;
+  let showEditModal = editCtx.showEditModal;
   const [rating, setRating] = useState(1);
+
   const [values, setValues] = useState({
     title: "",
     author: "",
@@ -35,12 +41,29 @@ const FormContainer = (props) => {
     rating: "",
   });
 
+  useEffect(() => {
+    if (showEditModal) {
+      setValues({
+        title: bookValues.title,
+        author: bookValues.author,
+        date: bookValues.date,
+        rating: bookValues.rating,
+      });
+      setRating(bookValues.rating);
+    } else {
+      setValues({
+        title: "",
+        author: "",
+        date: "",
+        rating: 1,
+      });
+      setRating(1);
+    }
+  }, [showEditModal]);
+
   const [error, setError] = useState();
 
   const onChange = (e) => {
-    // setValues({...values,
-    //     [e.target.name] : e.target.value,
-    // });
     setValues((prevState) => {
       return {
         ...prevState,
@@ -70,38 +93,43 @@ const FormContainer = (props) => {
       setError({
         title: "Invalid input",
         message: "Please fill in all the fields.",
+        btnText: "Close",
       });
       return;
     }
-    props.onAddBook(values);
-    setTimeout(() => {
-      props.onFetchBooks();
-    }, 1000);
+    if (showEditModal) {
+      editCtx.updateBookHandler(bookValues.id, values);
+    } else {
+      props.onAddBook(values);
+      setTimeout(() => {
+        props.onFetchBooks();
+      }, 1000);
+    }
 
     // RESET VALUES TO NOTHING
     setValues({
       title: "",
       author: "",
       date: "",
+      rating: 1,
     });
     setRating(1);
   };
-
   const errorHandler = () => {
     setError(null);
   };
   return (
     <>
       {error && (
-        <ErrorModal
+        <BoxModal
           title={error.title}
           message={error.message}
+          btnText={error.btnText}
           onConfirm={errorHandler}
         />
       )}
       <form className="form" onSubmit={submitHandler}>
         <h2>Add book</h2>
-
         {inputs.map((input) => (
           <FormInput
             key={input.id}

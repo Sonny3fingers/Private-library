@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import "./App.css";
 import FormContainer from "./components/FormContainer";
 import TableContainer from "./components/table/TableContainer";
+import BoxModal from "./components/UI/BoxModal";
+import EditBookModal from "./components/UI/EditBookModal";
+import EditContext from "./store/edit-context";
+import DeleteContext from "./store/delete-context";
 
 function App() {
   const [books, setBooks] = useState([]);
   const [errorHandler, setErrorHandler] = useState();
+  const editCtx = useContext(EditContext);
+  const deleteCtx = useContext(DeleteContext);
 
   const fetchBooksHandler = useCallback(async () => {
     const response = await fetch(
@@ -28,6 +34,8 @@ function App() {
         });
       }
       setBooks(loadedBooks);
+      editCtx.setItems(loadedBooks);
+      deleteCtx.setItems(loadedBooks);
     } catch (error) {
       setErrorHandler(error.message);
     }
@@ -36,6 +44,22 @@ function App() {
   useEffect(() => {
     fetchBooksHandler();
   }, [fetchBooksHandler]);
+
+  const updateBooks = useCallback(() => {
+    setBooks(editCtx.items);
+  }, [editCtx.items]);
+
+  const deleteBook = useCallback(() => {
+    setBooks(deleteCtx.items);
+  }, [deleteCtx.items]);
+
+  useEffect(() => {
+    deleteBook();
+  }, [deleteCtx.items]);
+
+  useEffect(() => {
+    updateBooks();
+  }, [editCtx.items]);
 
   const addBookHandler = async (values) => {
     const response = await fetch(
@@ -55,12 +79,15 @@ function App() {
     <div className="App">
       <h1>Private Library App</h1>
       <p>Keep Track Of Your Readings.</p>
+
       <FormContainer
         onAddBook={addBookHandler}
         onFetchBooks={fetchBooksHandler}
       />
       {errorHandler && <p>{errorHandler.message}</p>}
       <TableContainer items={books} onFetchBooks={fetchBooksHandler} />
+      {editCtx.showEditModal && <EditBookModal />}
+      {deleteCtx.showDeleteModal && <BoxModal />}
     </div>
   );
 }

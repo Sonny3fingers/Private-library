@@ -1,0 +1,70 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  z-index: 30;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.header {
+  background-color: rgb(9, 85, 85);
+  padding: 1rem;
+  margin: 0;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+}
+
+.content {
+  position: relative;
+  height: 250px;
+  background-color: var(--main-bg);
+  margin: 0;
+  z-index: 50;
+}
+.content::after {
+  content: "";
+  width: 300px;
+  height: 200px;
+  background-image: url("./../../assets/booksError.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.content p {
+  padding: 1.5rem 1rem;
+  font-size: 18px;
+  margin: 0;
+}
+.actions {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(9, 85, 85);
+}
+.actions button {
+  width: 45%;
+  background-color: var(--main-bg);
+  border: none;
+  padding: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+.actions button:hover {
+  background-color: rgb(241, 225, 200);
+}
+@media (max-width: 768px) {
+  .modal {
+    width: 80%;
+    min-width: 300px;
+  }
+}

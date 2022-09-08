@@ -1,0 +1,64 @@
+.editBookContainer {
+  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-bg);
+  padding: 50px;
+  z-index: 30;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.editBookContainer::before {
+  content: "";
+  width: 250px;
+  height: 200px;
+  transform: translateX(-30%) rotate(-45deg);
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  background-image: url("../../assets/booksBook.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.editBookContainer span {
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  padding: 5px 8px;
+  cursor: pointer;
+  background-color: var(--main-bg);
+  border: 1px solid gray;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+.editBookContainer span:hover {
+  background-color: var(--hover-green);
+}
+.editBookContainer li input:hover {
+  background-color: var(--hover-green);
+}
+.editBookContainer li label {
+  pointer-events: none;
+}
+@media screen and (max-width: 530px) {
+  .editBookContainer {
+    width: 80%;
+    padding: 20px;
+  }
+  .editBookContainer::before {
+    left: 60%;
+  }
+  .editBookContainer span {
+    top: 40px;
+    right: 25px;
+  }
+}
+@media screen and (min-width: 531px) and (max-width: 815px) {
+  .editBookContainer {
+    width: 60%;
+  }
+}
