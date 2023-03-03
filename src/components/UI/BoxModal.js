@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 import DeleteContext from "../../store/delete-context";
