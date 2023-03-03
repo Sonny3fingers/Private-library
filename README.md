@@ -1,2 +1,2 @@
-Private-library is a react project with firebase to keep track of your reading.
-![private-library-new](https://user-images.githubusercontent.com/77343092/187495199-84d4f9d0-84a0-467b-9422-244e8ab0b230.jpg)
+Private-library-app is a react project with firebase to keep track of your reading. User can see list of books, add books to a list, edit entered books and delete them. There is also simple validation modal.   
+![privateLibraryApp](https://user-images.githubusercontent.com/77343092/189147184-b218a108-ee4d-4e79-86be-f666fc49364c.jpg)
