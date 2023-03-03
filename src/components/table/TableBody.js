@@ -7,7 +7,7 @@ import EditContext from "../../store/edit-context";
 import DeleteContext from "../../store/delete-context";
 
 const TableBody = (props) => {
-  const { id, title, author, date, rating, onFetchBooks } = props;
+  const { id, title, author, date, rating } = props;
   const editCtx = useContext(EditContext);
   const deleteCtx = useContext(DeleteContext);
   const [dropdownId, setDropdownId] = useState("");
