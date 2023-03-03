@@ -1,14 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200&family=Be+Vietnam+Pro:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;0,800;1,400&family=Lato:wght@300&family=Poppins:wght@200;300;500;700&display=swap");
 :root {
   --main-bg: rgb(244, 237, 227);
+  --white-bg: rgb(255, 255, 255);
   --main-green: rgb(9, 85, 85);
   --hover-green: rgba(9, 85, 85, 0.5);
+  --green-lighter: rgba(15, 122, 122, 0.3);
+  --yellow-light: rgba(233, 186, 22, 0.3);
+  --padding-all: 100px 17% 100px 17%;
 }
 body {
   width: 100%;
   min-width: 347.37px;
   height: 100%;
-  background-color: var(--main-bg);
   overflow-x: hidden;
   font-family: "EB Garamond", serif;
 }
@@ -21,27 +24,35 @@ body::-webkit-scrollbar {
 #modal-root {
   min-width: 347.37px;
 }
-.App {
+.main {
+  width: 100%;
+}
+.formTableContainer {
+  width: 100%;
+  background-color: var(--main-bg);
+}
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: 65%;
   max-width: 1800px;
+  background-color: transparent;
   margin: 0 auto;
   padding-bottom: 64px;
   position: relative;
   z-index: 2;
 }
-.App h1 {
+.app h1 {
   margin-bottom: 4px;
   font-size: 36px;
 }
-.App p {
+.app p {
   margin-top: 0px;
   font-size: 18px;
 }
-.App::before {
+.app::before {
   content: "";
   background-image: url("assets/books.jpg");
   background-position: center;
@@ -136,11 +147,11 @@ body::-webkit-scrollbar {
   opacity: 0;
 }
 [type="radio"]:hover ~ label {
-  background-color: rgba(9, 85, 85, 0.5);
+  background-color: var(--green-lighter);
 }
 [type="radio"]:checked ~ label {
-  background-color: rgba(9, 85, 85, 0.5);
-  border: 3px solid rgb(9, 85, 85);
+  background-color: var(--green-lighter);
+  border: 3px solid var(--main-green);
 }
 .table {
   width: 100%;
@@ -162,9 +173,13 @@ tr:hover {
   padding: 5px;
   text-align: left;
 }
-td:last-of-type {
+td:last-of-type,
+td:nth-last-of-type(2) {
   text-align: center;
   margin: auto;
+}
+.table th:nth-last-of-type(2) {
+  text-align: center;
 }
 td span {
   width: 100%;
@@ -212,14 +227,104 @@ td ul li {
 td ul li:hover {
   background-color: rgba(233, 186, 22, 0.7);
 }
+.totalBooksSection {
+  width: 100%;
+  position: relative;
+  max-width: 1800px;
+  margin: auto;
+}
+.totalBooksSection > div {
+  max-width: 1800px;
+  padding: var(--padding-all);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: x-large;
+}
+
+.totalBooks span:first-of-type,
+.averageRating span:first-of-type {
+  margin-right: 15px;
+}
+.totalBooks span:last-of-type,
+.averageRating span:last-of-type {
+  min-width: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: var(--main-green);
+  color: white;
+}
+.totalBooksSection::before {
+  content: "";
+  width: 30%;
+  height: 120%;
+  background-image: url("./assets/booksTransparent.png");
+  background-size: contain;
+  background-position: left top;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -33%;
+  left: -5%;
+  transform: rotate(0deg);
+  z-index: 1;
+}
+.chart {
+  padding: 0 17% 100px;
+}
 @media screen and (max-width: 830px) {
-  .App {
+  :root {
+    --padding-all: 75px 15% 75px 0px;
+  }
+  .app {
     width: 95%;
     min-width: 330px;
   }
-  .App::before {
+  .app::before {
     width: 300px;
     height: 300px;
     right: 20%;
+  }
+  .totalBooksSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .totalBooksSection > div {
+    width: 40%;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    font-size: 20px;
+  }
+  .totalBooksSection::before {
+    width: 50%;
+    height: 100%;
+    background-size: contain;
+    background-size: 90%, 95%;
+    background-position: right center;
+    top: 0px;
+  }
+  .totalBooks span:last-of-type,
+  .averageRating span:last-of-type {
+    min-width: 25px;
+    min-height: 25px;
+  }
+  .chart {
+    padding: 0 15% 75px;
+  }
+}
+@media screen and (max-width: 440px) {
+  :root {
+    --padding-all: 75px 2.5% 75px 0px;
+  }
+  .totalBooksSection > div {
+    width: 48%;
+  }
+  .chart {
+    padding: 0 2.5% 75px;
   }
 }

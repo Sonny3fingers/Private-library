@@ -48,6 +48,7 @@ const FormContainer = (props) => {
         author: bookValues.author,
         date: bookValues.date,
         rating: bookValues.rating,
+        id: bookValues.id,
       });
       setRating(bookValues.rating);
     } else {
@@ -68,7 +69,6 @@ const FormContainer = (props) => {
       return {
         ...prevState,
         [e.target.name]: e.target.value,
-        id: Math.floor(Math.random() * 10000) + 1,
       };
     });
   };
