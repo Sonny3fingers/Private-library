@@ -129,16 +129,18 @@ const FormContainer = (props) => {
         />
       )}
       <form className="form" onSubmit={submitHandler}>
-        <h2>Add book</h2>
-        {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            onChange={onChange}
-            value={values[input.name]}
-          />
-        ))}
-        <Ratings select={setRating} selected={rating} />
+        <div>
+          <h2>Add book</h2>
+          {inputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              onChange={onChange}
+              value={values[input.name]}
+            />
+          ))}
+          <Ratings select={setRating} selected={rating} />
+        </div>
         <button onClick={props.onFetchBooks}>Submit</button>
       </form>
     </>

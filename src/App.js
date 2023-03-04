@@ -9,6 +9,8 @@ import SortTable from "./components/UI/SortTable";
 import EditContext from "./store/edit-context";
 import DeleteContext from "./store/delete-context";
 import BarChart from "./components/BarChart";
+import TableHeader from "./components/table/TableHeader";
+import HeaderTableSection from "./components/UI/HeaderTableSection";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -147,14 +149,19 @@ function App() {
     <div className="main">
       <div className="formTableContainer">
         <div className="app">
-          <h1>Private Library App</h1>
-          <p>Keep Track Of Your Readings.</p>
-
+          <header>
+            <div>
+              <h1>Private Library App</h1>
+              <p>Keep Track Of Your Readings.</p>
+            </div>
+            <h2>Milivoj Jovisevic</h2>
+          </header>
           <FormContainer
             onAddBook={addBookHandler}
             onFetchBooks={fetchBooksHandler}
           />
           {errorHandler && <p>{errorHandler.message}</p>}
+          <HeaderTableSection />
           <SortTable
             sortByDate={sortByDate}
             onSortByDate={setSortByDate}

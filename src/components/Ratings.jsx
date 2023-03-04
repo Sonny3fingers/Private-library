@@ -7,7 +7,7 @@ const Ratings = ({ select, selected }) => {
 
   return (
     <div>
-      <h3>How would you rate this book?</h3>
+      <p>How would you rate this book?</p>
       <ul className="ratingsList">
         <li>
           <input
