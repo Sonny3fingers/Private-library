@@ -65,6 +65,13 @@ header h2 {
   font-size: 30px;
   text-transform: capitalize;
 }
+h2 {
+  color: #bc623f;
+  font-size: 30px;
+  font-weight: 200;
+  padding-top: 100px;
+  text-align: center;
+}
 .app p {
   margin-top: 0px;
   font-size: 20px;
@@ -93,16 +100,12 @@ header h2 {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  background-color: #fff8ec;
+  background-color: #fefbe9;
 }
 .form > div {
   display: flex;
   flex-direction: column;
   width: 60%;
-}
-.form h2 {
-  color: #bc623f;
-  font-weight: 200;
 }
 .formInput {
   display: flex;
