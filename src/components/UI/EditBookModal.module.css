@@ -1,4 +1,5 @@
 .editBookContainer {
+  width: 60%;
   position: relative;
   position: fixed;
   top: 50%;
@@ -10,23 +11,10 @@
   border-radius: 16px;
   overflow: hidden;
 }
-.editBookContainer::before {
-  content: "";
-  width: 250px;
-  height: 200px;
-  transform: translateX(-30%) rotate(-45deg);
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  background-image: url("../../assets/booksBook.jpg");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
 .editBookContainer span {
   position: absolute;
   top: 70px;
-  right: 50px;
+  right: 10%;
   padding: 5px 8px;
   cursor: pointer;
   background-color: var(--main-bg);

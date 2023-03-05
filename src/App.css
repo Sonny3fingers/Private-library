@@ -201,10 +201,11 @@ h2 {
   border: 1px solid #f7c04a;
 }
 .table {
-  width: 96%;
-  background-color: #fff;
-  border: 2px solid rgb(9, 85, 85);
+  width: 60%;
+  background-color: #fffaee;
+  background-color: rgb(255, 252, 247);
   margin-bottom: 40px;
+  padding: 20px;
 }
 tr {
   width: 100%;
@@ -233,7 +234,7 @@ td span {
   height: 100%;
   padding: 3px 10px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: rgb(255, 252, 247);
   border: none;
   margin: 0;
   transition: all 0.3s ease;
@@ -320,7 +321,7 @@ td ul li:hover {
   z-index: 1;
 }
 .chart {
-  padding: 0 17% 100px;
+  padding: 75px 25%;
 }
 @media screen and (max-width: 830px) {
   :root {
@@ -335,6 +336,10 @@ td ul li:hover {
   }
   .form > div {
     width: 80%;
+  }
+  .table {
+    width: 80%;
+    padding: 5px;
   }
   .totalBooksSection {
     display: flex;
@@ -362,7 +367,7 @@ td ul li:hover {
     min-height: 25px;
   }
   .chart {
-    padding: 0 15% 75px;
+    padding: 50px 15%;
   }
 }
 @media screen and (max-width: 440px) {
@@ -372,10 +377,13 @@ td ul li:hover {
   .form > div {
     width: 90%;
   }
+  .table {
+    width: 96%;
+  }
   .totalBooksSection > div {
     width: 48%;
   }
   .chart {
-    padding: 0 2.5% 75px;
+    padding: 50px 2.5%;
   }
 }

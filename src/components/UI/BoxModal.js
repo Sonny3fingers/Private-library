@@ -7,16 +7,15 @@ import classes from "./BoxModal.module.css";
 const BoxModal = (props) => {
   const Modal = (props) => {
     const deleteCtx = useContext(DeleteContext);
-
     return (
       <div className={classes.modal}>
-        <header className={classes.header}>
+        <div className={classes.headerBoxModal}>
           <h2>
             {!deleteCtx.showDeleteModal
               ? `${props.title}`
               : `${deleteCtx.deleteModalValues.title}`}
           </h2>
-        </header>
+        </div>
         <div className={classes.content}>
           <p>
             {!deleteCtx.showDeleteModal

@@ -50,7 +50,6 @@ function App() {
       );
       editCtx.setItems(loadedBooks);
       deleteCtx.setItems(loadedBooks);
-      // setSortBooksData(loadedBooks);
     } catch (error) {
       setErrorHandler(error.message);
     }

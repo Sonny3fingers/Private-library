@@ -14,7 +14,7 @@ const EditBookModal = () => {
       <Backdrop />
       <div className={classes.editBookContainer}>
         <span className="closeIcon" onClick={editCtx.hideEditModalHandler}>
-          <FontAwesomeIcon icon={faXmark} size="xl" />
+          <FontAwesomeIcon icon={faXmark} size="2xl" />
         </span>
         <FormContainer />
       </div>
