@@ -22,12 +22,8 @@ body {
   height: 100vh;
   overflow-x: hidden;
   font-family: "EB Garamond", serif;
-  scroll-snap-align: start;
-  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
-/* body::-webkit-scrollbar {
-  display: none;
-} */
 #backdrop-root {
   min-width: 347.37px;
 }
