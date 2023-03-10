@@ -3,14 +3,14 @@ import "./App.css";
 import FormContainer from "./components/FormContainer";
 import TableContainer from "./components/table/TableContainer";
 import TotalBooksSection from "./components/TotalBooksSection";
-import BoxModal from "./components/UI/BoxModal";
-import EditBookModal from "./components/UI/EditBookModal";
+// import BoxModal from "./components/UI/BoxModal";
+// import EditBookModal from "./components/UI/EditBookModal";
 import SortTable from "./components/UI/SortTable";
 import EditContext from "./store/edit-context";
 import DeleteContext from "./store/delete-context";
 import BarChart from "./components/BarChart";
-import TableHeader from "./components/table/TableHeader";
 import HeaderTableSection from "./components/UI/HeaderTableSection";
+import Header from "./components/Header";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -141,38 +141,24 @@ function App() {
         },
       }
     );
-    const data = await response.json();
   };
 
   return (
     <div className="main">
-      <div className="formTableContainer">
-        <div className="app">
-          <header>
-            <div>
-              <h1>Private Library App</h1>
-              <p>Keep Track Of Your Readings.</p>
-            </div>
-            <h2>Milivoj Jovisevic</h2>
-          </header>
-          <FormContainer
-            onAddBook={addBookHandler}
-            onFetchBooks={fetchBooksHandler}
-          />
-          {errorHandler && <p>{errorHandler.message}</p>}
-          <HeaderTableSection />
-          <SortTable
-            sortByDate={sortByDate}
-            onSortByDate={setSortByDate}
-            setSortBooksHandler={setBooks}
-          />
-          <TableContainer items={books} onFetchBooks={fetchBooksHandler} />
-          {editCtx.showEditModal && <BoxModal title={"Edit Book"} />}
-          {deleteCtx.showDeleteModal && <BoxModal />}
-        </div>
-      </div>
+      <Header />
+      <FormContainer
+        onAddBook={addBookHandler}
+        onFetchBooks={fetchBooksHandler}
+      />
+      {errorHandler && <p>{errorHandler.message}</p>}
+      <HeaderTableSection />
+      <SortTable
+        sortByDate={sortByDate}
+        onSortByDate={setSortByDate}
+        setSortBooksHandler={setBooks}
+      />
+      <TableContainer items={books} onFetchBooks={fetchBooksHandler} />
       <TotalBooksSection items={books} />
-
       {!readingBooksByYearsData
         ? ""
         : readingBooksByYearsData.map((item) => (
