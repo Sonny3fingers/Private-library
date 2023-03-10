@@ -1,6 +1,7 @@
 .headerTableSection {
-  width: 96%;
+  width: 100%;
   scroll-snap-align: start;
+  background-color: var(--main-bg);
 }
 .headerTableSection h2 {
   color: #bc623f;

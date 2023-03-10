@@ -5,10 +5,10 @@
   --main-green: #00917c;
   --green: #11927f;
   --green-hover: #25a996;
-  --hover-green: rgba(9, 85, 85, 0.5);
   --green-lighter: rgba(19, 146, 146, 0.3);
   --yellow-light: rgba(233, 186, 22, 0.8);
   --yellow: rgba(233, 186, 22);
+  --table-color: rgb(255, 252, 247);
   --padding-all: 100px 17% 100px 17%;
 }
 * {
@@ -17,9 +17,7 @@
   box-sizing: border-box;
 }
 body {
-  width: 100%;
   min-width: 347.37px;
-  height: 100vh;
   overflow-x: hidden;
   font-family: "EB Garamond", serif;
   scroll-behavior: smooth;
@@ -30,23 +28,14 @@ body {
 #modal-root {
   min-width: 347.37px;
 }
-.formTableContainer {
-  width: 100%;
-  background-color: var(--main-bg);
-}
-.app {
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-width: 1800px;
-  background-color: transparent;
-  margin: 0 auto;
-  padding-bottom: 64px;
-  position: relative;
-  z-index: 2;
+  scroll-snap-type: y mandatory;
 }
 header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,15 +44,32 @@ header {
   min-height: 650px;
   text-align: center;
   scroll-snap-align: start;
+  background-color: var(--main-bg);
+}
+header::before {
+  content: "";
+  background-image: url("./assets/books.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 200px;
+  right: 50%;
+  z-index: 1;
+  transform: translate(50%, -5%) rotate(-15deg);
 }
 header h1,
 header h2 {
   margin-bottom: 4px;
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
   font-size: 36px;
   color: var(--green);
   text-transform: uppercase;
   font-weight: 200;
+  z-index: 2;
 }
 header h2 {
   font-size: 30px;
@@ -76,25 +82,11 @@ h2 {
   padding: 20px;
   text-align: center;
 }
-.app p {
+header p {
   margin-top: 0px;
   font-size: 20px;
   color: #bc623f;
   font-style: italic;
-}
-.app::before {
-  content: "";
-  background-image: url("assets/books.jpg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  top: 200px;
-  right: 50%;
-  z-index: -1;
-  transform: translate(50%, -5%) rotate(-15deg);
 }
 .form {
   width: 100%;
@@ -106,7 +98,6 @@ h2 {
   justify-content: space-around;
   position: relative;
   background-color: #fefbe9;
-  scroll-snap-align: start;
 }
 .form > div {
   display: flex;
@@ -207,16 +198,18 @@ h2 {
   border: 1px solid #f7c04a;
 }
 .table {
-  width: 60%;
+  width: 100%;
   background-color: #fffaee;
   background-color: rgb(255, 252, 247);
+  background-color: var(--main-bg);
   margin-bottom: 40px;
-  padding: 20px;
+  padding: 20px 20%;
 }
 tr {
   width: 100%;
   position: relative;
   transition: all 0.3s ease;
+  background-color: var(--table-color);
 }
 tr:hover {
   background-color: rgba(9, 85, 85, 0.1);
@@ -297,16 +290,14 @@ td span .icon {
   z-index: 1;
 }
 .chart {
-  padding: 75px 25%;
+  width: 100%;
+  padding: 75px 20%;
 }
 @media screen and (max-width: 830px) {
   :root {
     --padding-all: 75px 15% 75px 0px;
   }
-  .app {
-    min-width: 330px;
-  }
-  .app::before {
+  header::before {
     width: 300px;
     height: 300px;
   }
@@ -314,8 +305,7 @@ td span .icon {
     width: 80%;
   }
   .table {
-    width: 80%;
-    padding: 5px;
+    padding: 20px 10%;
   }
   .totalBooksSection {
     display: flex;
@@ -358,11 +348,13 @@ td span .icon {
     width: 90%;
   }
   .table {
-    width: 96%;
+    padding: 20px 2%;
   }
+  .table thead th:nth-child(3),
   .table td:nth-child(3) {
     display: none;
   }
+
   .totalBooksSection > div {
     width: 60%;
   }
