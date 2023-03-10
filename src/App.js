@@ -4,12 +4,10 @@ import FormContainer from "./components/FormContainer";
 import TableContainer from "./components/table/TableContainer";
 import TotalBooksSection from "./components/TotalBooksSection";
 import BoxModal from "./components/UI/BoxModal";
-import EditBookModal from "./components/UI/EditBookModal";
 import SortTable from "./components/UI/SortTable";
 import EditContext from "./store/edit-context";
 import DeleteContext from "./store/delete-context";
 import BarChart from "./components/BarChart";
-import TableHeader from "./components/table/TableHeader";
 import HeaderTableSection from "./components/UI/HeaderTableSection";
 
 function App() {
