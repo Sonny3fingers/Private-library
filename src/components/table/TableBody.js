@@ -1,52 +1,58 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import EditContext from "../../store/edit-context";
 import DeleteContext from "../../store/delete-context";
+import BoxModal from "../UI/BoxModal";
 
 const TableBody = (props) => {
   const { id, title, author, date, rating } = props;
   const editCtx = useContext(EditContext);
   const deleteCtx = useContext(DeleteContext);
-  const [dropdownId, setDropdownId] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [isUpdateBook, setIsUpdateBook] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const deleteBookHandler = () => {
-    deleteCtx.showDeleteModalHandler();
+  const showUpdateBookHandler = (e) => {
+    if (id === e.target.parentElement.parentElement.id) {
+      setIsUpdateBook(true);
+      editCtx.setBookValues({
+        id: props.id,
+        author: props.author,
+        title: props.title,
+        date: props.date,
+        rating: props.rating,
+      });
+    }
+  };
+
+  const onCloseBoxModalHandler = () => {
+    setIsUpdateBook(false);
+    setIsEditing(false);
+    setIsDeleting(false);
+  };
+
+  const isEditingHandler = () => {
+    setIsEditing(true);
+  };
+
+  const isDeletingHandler = () => {
+    setIsDeleting(true);
     deleteCtx.setDeleteModalValues({
       title: "Delete Book",
       message: "Are you sure you want to delete this book?",
-      btnText: "Delete",
-      id: id,
-      bookTitle: title,
+      id: props.id,
+      bookTitle: props.title,
     });
   };
 
-  const editBookHandler = () => {
-    editCtx.showEditModalHandler();
-    const bookValues = { id, title, author, date, rating };
-    editCtx.setBookValues(bookValues);
+  const cancelDeleteHandler = () => {
+    setIsDeleting(false);
   };
 
-  const showDropdownHandler = (e) => {
-    if (id === e.target.parentElement.parentElement.id) {
-      setDropdownId(id);
-      setShowDropdown((prevState) => !prevState);
-    } else {
-      setDropdownId("");
-      setShowDropdown(false);
-    }
+  const cancelEditHandler = () => {
+    setIsEditing(false);
   };
-
-  useEffect(() => {
-    if (id === dropdownId) {
-      editCtx.showEditModal
-        ? setShowDropdown(editCtx.showEditModal)
-        : setShowDropdown(deleteCtx.showDeleteModal);
-    }
-  }, [editCtx.showEditModal, deleteCtx.showDeleteModal]);
 
   return (
     <tbody>
@@ -56,17 +62,26 @@ const TableBody = (props) => {
         <td>{date}</td>
         <td>{rating}</td>
         <td>
-          <span className="dropdownBtn" onClick={showDropdownHandler}>
+          <span className="dropdownBtn" onClick={showUpdateBookHandler}>
             <FontAwesomeIcon className="icon" icon={faEllipsis} />
-            {showDropdown && (
-              <ul>
-                <li onClick={editBookHandler}>
-                  <FontAwesomeIcon className="icon" icon={faPencil} />
-                </li>
-                <li onClick={deleteBookHandler}>
-                  <FontAwesomeIcon className="icon" icon={faTrashCan} />
-                </li>
-              </ul>
+            {isUpdateBook && (
+              <BoxModal
+                title={"Update Book"}
+                message={"Edit or Delete Book?"}
+                isUpdateBook={isUpdateBook}
+                id={id}
+                bookTitle={title}
+                bookAuthor={author}
+                bookDate={date}
+                bookRating={rating}
+                onCloseBoxModalHandler={onCloseBoxModalHandler}
+                isEditingHandler={isEditingHandler}
+                isEditing={isEditing}
+                isDeletingHandler={isDeletingHandler}
+                isDeleting={isDeleting}
+                cancelDeleteHandler={cancelDeleteHandler}
+                cancelEditHandler={cancelEditHandler}
+              ></BoxModal>
             )}
           </span>
         </td>

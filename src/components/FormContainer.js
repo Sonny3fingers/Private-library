@@ -33,7 +33,8 @@ const FormContainer = (props) => {
   let bookValues = editCtx.bookValues;
   let showEditModal = editCtx.showEditModal;
   const [rating, setRating] = useState(1);
-
+  const [error, setError] = useState();
+  const [isNotValidate, setIsNotValidate] = useState(false);
   const [values, setValues] = useState({
     title: "",
     author: "",
@@ -62,8 +63,6 @@ const FormContainer = (props) => {
     }
   }, [showEditModal]);
 
-  const [error, setError] = useState();
-
   const onChange = (e) => {
     setValues((prevState) => {
       return {
@@ -90,6 +89,7 @@ const FormContainer = (props) => {
       values.title.trim().length === 0 ||
       values.date.trim().length === 0
     ) {
+      setIsNotValidate(true);
       setError({
         title: "Invalid input",
         message: "Please fill in all the fields.",
@@ -116,16 +116,17 @@ const FormContainer = (props) => {
     setRating(1);
   };
   const errorHandler = () => {
+    setIsNotValidate(false);
     setError(null);
   };
   return (
     <>
-      {error && (
+      {isNotValidate && (
         <BoxModal
           title={error.title}
           message={error.message}
-          btnText={error.btnText}
           onConfirm={errorHandler}
+          isNotValidate={isNotValidate}
         />
       )}
       <form className="form" onSubmit={submitHandler}>

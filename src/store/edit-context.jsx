@@ -40,6 +40,7 @@ export const EditProvider = ({ children }) => {
       setShowEditModal(false);
     }, 500);
   };
+
   return (
     <EditContext.Provider
       value={{

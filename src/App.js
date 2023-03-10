@@ -167,7 +167,7 @@ function App() {
             setSortBooksHandler={setBooks}
           />
           <TableContainer items={books} onFetchBooks={fetchBooksHandler} />
-          {editCtx.showEditModal && <EditBookModal />}
+          {editCtx.showEditModal && <BoxModal title={"Edit Book"} />}
           {deleteCtx.showDeleteModal && <BoxModal />}
         </div>
       </div>
